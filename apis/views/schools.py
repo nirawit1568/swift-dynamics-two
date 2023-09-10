@@ -54,8 +54,8 @@ class StudentSubjectsScoreAPIView(APIView):
         subjects_title = request.data.get("subject_title", None)
         score = request.data.get("score", None)
 
-        if not student_first_name or not student_last_name or not subjects_title or not score:
-            return Response({"message": "The data payload is incorrect."}, status=status.HTTP_400_BAD_REQUEST)
+        if not student_first_name or not student_last_name or not subjects_title or not str(score):
+            return Response({"message": "The data payload is should not empty value."}, status=status.HTTP_400_BAD_REQUEST)
         
         if not isinstance(student_first_name, str) or not isinstance(student_last_name, str) or not isinstance(subjects_title, str) or not isinstance(score, int):
             return Response({"message": "first name, last name, subject is should be string and score should be number"}, status=status.HTTP_400_BAD_REQUEST)
